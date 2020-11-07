@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_135418) do
+ActiveRecord::Schema.define(version: 2020_11_07_144959) do
+
+  create_table "instructions", force: :cascade do |t|
+    t.integer "order"
+    t.text "instruction_info"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "recipe_id"
+    t.index ["recipe_id"], name: "index_instructions_on_recipe_id"
+  end
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
