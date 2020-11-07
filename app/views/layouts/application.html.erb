@@ -10,6 +10,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <section class="hero">
+      <div class="hero-head is-medium">
+        <%= render '/shared/header' %>
+      </div>
+
+      <div class="hero-body">
+        <div class="container is-fullhd">
+          <%= yield %>
+        </div>
+      </div>
+      <div class="hero-foot">
+        <%= render '/shared/footer' %>
+      </div>
+    </section>
   </body>
 </html>

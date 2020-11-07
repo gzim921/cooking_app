@@ -203,7 +203,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
-  font-awesome-rails
+  font-awesome-rails (~> 4.7, >= 4.7.0.5)
   jbuilder (~> 2.7)
   listen (~> 3.2)
   puma (~> 4.1)

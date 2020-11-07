@@ -1,0 +1,36 @@
+$red-color: #de2846;
+
+body {
+  background-color: rgb(247, 245, 245);
+}
+
+h1, h2, a{
+  color: $red-color;
+}
+
+.is-danger {
+  background-color: $red-color;
+}
+
+.hero-head {
+  background-color: white;
+  margin-top: 5%;
+  padding: 3%;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+}
+
+.navbar {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.navbar-item img {
+  max-height: 5rem;
+  border-radius: 45%;
+}
+
+.logo {
+  position: relative;
+  width: 150px;
+  height: 70px;
+}
