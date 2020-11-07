@@ -9,6 +9,7 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @recipe.instructions.build
+    @recipe.ingridients.build
   end
 
   def create
@@ -32,6 +33,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :description, instructions_attributes: %i[id order instruction_info])
+    params.require(:recipe).permit(:title, :description, instructions_attributes: %i[id order instruction_info], ingridients_attributes: %i[id name])
   end
 end

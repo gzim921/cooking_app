@@ -9,7 +9,8 @@ require("@rails/activestorage").start()
 require("jquery")
 require("channels")
 require("components/navBar")
-require("components/createFields")
+require("components/createFieldsInstructions")
+require("components/createFieldsIngridients")
 
 
 
