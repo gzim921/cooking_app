@@ -1,0 +1,26 @@
+<ul class="ingridients_list">
+  <%= form.fields_for :ingridients do |ingridients_field| %>
+      <div class="field">
+          <li>
+              <div class="control">
+                  <div class="columns is-mobile">
+                      <div class="column ">
+                          <%= ingridients_field.text_field :name, class: 'input', placeholder: 'Ingridient' %>
+                      </div>
+                      <div class="column is-1">
+                          <div class="icon_times"> <i class="fa fa-times fa-2x"></i> </div>
+                      </div>
+                  </div>
+              </div>
+          </li>
+      </div>
+  <% end %>
+</ul>
+<div class="field">
+  <div class="control has-icons-left has-icons-right" style="margin-top:5%;">
+      <div class="input" id="addIngridients" > Add </div>
+      <span class="icon is-small is-left">
+          <i class="fa fa-plus"></i>
+      </span>
+  </div>
+</div> 

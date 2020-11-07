@@ -1,0 +1,31 @@
+<%= form_with model: @recipe, local: true  do |form| %>
+  <div class="field">
+      <%= form.label :title, class: 'label' %>
+      <div class="control">
+          <%= form.text_field :title, class: "input", placeholder: "Title" %>
+      </div>
+  </div>
+
+  <div class="field">
+      <%= form.label:description, class: 'label' %>
+      <div class="control">
+          <%= form.text_area :description, class: "input", placeholder: "Description..." %>
+      </div>
+  </div>
+
+  <label class="label">Instructions</label>
+  <%= render 'instruction_form', form: form %>
+
+
+  <label class="label">Ingridients</label>
+  <%= render 'ingridients_form', form: form %>
+
+  <div class="field is-grouped">
+      <div class="control">
+          <%= form.submit 'Submit', class: 'button is-dark' %>
+      </div>
+      <div class="control">
+          <%= link_to 'Cancel', recipes_path, class: 'button is-light' %>
+      </div>
+  </div>
+<% end %> 
