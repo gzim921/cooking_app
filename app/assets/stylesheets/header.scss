@@ -2,10 +2,16 @@ $red-color: #de2846;
 
 body {
   background-color: rgb(247, 245, 245);
+  font-family: 'Sriracha', cursive;
 }
 
-h1, h2, a{
+.title, a{
   color: $red-color;
+}
+
+a.navbar-item:hover{
+  color: $red-color;
+  background-color: transparent;
 }
 
 .is-danger {
