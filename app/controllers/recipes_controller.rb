@@ -7,9 +7,17 @@ class RecipesController < ApplicationController
   end
 
   def new
+    @recipe = Recipe.new
+    @recipe.instructions.build
   end
 
   def create
+    @recipe = Recipe.create(recipe_params)
+    if @recipe.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -19,5 +27,11 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def recipe_params
+    params.require(:recipe).permit(:title, :description, instructions_attributes: %i[id order instruction_info])
   end
 end

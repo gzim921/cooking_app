@@ -1,0 +1,58 @@
+<div class="columns is-multilines">
+  <div class="columns is-6 is-offset-3">
+    <%= form_with model: @recipe, local: true do |form| %>
+      <div class="field">
+        <%= form.label :title, class: 'label' %>
+        <div class="control">
+          <%= form.text_field :title, class: 'input', placeholder: 'Title' %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= form.label :description, class: 'label' %>
+        <div class="control">
+          <%= form.text_area :description, class: 'input', placeholder: 'Description' %>
+        </div>
+      </div>
+
+      <label class="label">Instructions</label>
+      <ul>
+        <%= form.fields_for :instructions do |instructions_field| %>
+          <div class="field">
+            <li>
+              <div class="control">
+                <div class="columns is-mobile">
+                  <div class="columns is-3">
+                    <%= instructions_field.number_field :order, class: 'input', placeholder: 'Step' %>
+                  </div>
+                  <div class="column">
+                    <%= instructions_field.text_field :instruction_info, class: 'input', placeholder: 'Instructions' %>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </div>
+        <% end %>
+      </ul>
+      <div class="field">
+        <div class="control has-icons-left has-icons-right" style="margin-top:5%;">
+          <div class="input" id="addInstrucion">Add</div>
+          <span class="icon is-small is-left">
+            <i class="fa fa-plus"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fa fa-check"></i>
+          <span>
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">Submit</button>
+        </div>
+        <div class="control">
+          <button class="button is-link is-light">Cancel</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
