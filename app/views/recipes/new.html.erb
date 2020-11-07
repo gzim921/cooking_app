@@ -22,11 +22,16 @@
             <li>
               <div class="control">
                 <div class="columns is-mobile">
-                  <div class="columns is-3">
+                  <div class="columns is-2">
                     <%= instructions_field.number_field :order, class: 'input', placeholder: 'Step' %>
                   </div>
                   <div class="column">
                     <%= instructions_field.text_field :instruction_info, class: 'input', placeholder: 'Instructions' %>
+                  </div>
+                  <div class="column is-1">
+                    <div class="icon_times">
+                      <i class="fa fa-times fa-2x"></i>
+                    </div>
                   </div>
                 </div>
               </div>
