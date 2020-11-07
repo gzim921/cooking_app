@@ -5,11 +5,11 @@ body {
   font-family: 'Sriracha', cursive;
 }
 
-.title, a{
+.title, strong, a{
   color: $red-color;
 }
 
-a.navbar-item:hover{
+a.navbar-item:hover {
   color: $red-color;
   background-color: transparent;
 }
@@ -39,4 +39,9 @@ a.navbar-item:hover{
   position: relative;
   width: 150px;
   height: 70px;
+}
+
+.footer {
+  background-color: rgb(63, 63, 63);
+  color: white;
 }
