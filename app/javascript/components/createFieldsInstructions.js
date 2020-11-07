@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   const createInstruction = $('#addInstruction');
   const removeInstruction = $('.fa-times');
 
