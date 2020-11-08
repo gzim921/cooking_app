@@ -1,0 +1,16 @@
+<div class="columns is-multilines">
+  <div class="column is-6 is-offset-3">
+    <label class="label">Ingridients</label>
+    <%= form_with model: [@recipe, @ingridient], local: true do |ingridients_field| %>
+      <ul class="ingridients_list">
+        <% if local_assigns[:edit] %>
+          <%= render 'form', ingridients_field: ingridients_field, edit: true %>
+        <% else %>
+            <%= render 'form', ingridients_field: ingridients_field %>
+        <% end %>
+      </ul>
+      <br>
+      <%= ingridients_field.submit 'Add ingridient', class: 'button is-dark' %>
+    <% end %>
+  </div>
+</div>
