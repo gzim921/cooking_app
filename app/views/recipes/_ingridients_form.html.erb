@@ -6,10 +6,11 @@
           <%= ingridients_field.text_field :name, class: 'input', placeholder: 'Ingridient' %>
         </div>
         <div class="column is-1">
-          <div class="icon-times">
+          <% if local_assigns[:edit] %>
+            <%= ingridients_field.check_box :_destroy %>
+          <% else %>
             <i class="fa fa-times fa-2x"></i>
-          </div>
-          <!-- Should add here if local_assigns[:edit] then link_to: :_destroy -->
+          <% end %>
         </div>
       </div>
     </div>

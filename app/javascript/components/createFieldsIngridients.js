@@ -14,7 +14,7 @@ $(document).on('turbolinks:load', function() {
       <li>
         <div class='columns is-mobile'>
           <div class='column'>
-            <input class='input' " + nameOrder + " id=" + idOrder + " type='text' placeholder='Ingridient'>
+            <input class='input' name=${nameOrder} id=${idOrder} type='text' placeholder='Ingridient'>
           </div>
           <div class='column is-1'>
             <div class='icon_times'>

@@ -35,7 +35,7 @@
       <% else %>
         <%= link_to 'Show', recipe_path(recipe), class: 'card-footer-item' %>
       <% end %>
-      <a href="#" class="card-footer-item">Edit</a>
+       <%= link_to 'Edit', edit_recipe_path(recipe), class: 'card-footer-item' %>
     </footer>
   </div>
 </div>
