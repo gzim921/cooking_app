@@ -3,14 +3,11 @@
     <label class="label">Ingridients</label>
     <%= form_with model: [@recipe, @ingridient], local: true do |ingridients_field| %>
       <ul class="ingridients_list">
-        <% if local_assigns[:edit] %>
-          <%= render 'form', ingridients_field: ingridients_field, edit: true %>
-        <% else %>
-            <%= render 'form', ingridients_field: ingridients_field %>
-        <% end %>
+        <%= render 'form', ingridients_field: ingridients_field %>
       </ul>
       <br>
       <%= ingridients_field.submit 'Add ingridient', class: 'button is-dark' %>
+      <%= link_to 'Cancel', recipe_path(@recipe), class: 'button is-light' %>
     <% end %>
   </div>
 </div>

@@ -17,9 +17,9 @@
   <ul class="instructions_list">
     <%= form.fields_for :Instructions do |instructions_field| %>
       <% if local_assigns[:edit] %>
-        <%= render 'instructions_form', instructions_field: instructions_field, edit: true %>
+        <%= render 'instructions/form', instructions_field: instructions_field, edit: true %>
       <% else %>
-        <%= render 'instructions_form', instructions_field: instructions_field %>
+        <%= render 'instructions/form', instructions_field: instructions_field %>
       <% end %>
     <% end %>
   </ul>
@@ -36,9 +36,9 @@
   <%=form.fields_for :ingridients do |ingridients_field| %>
     <ul class="ingridients_list">
       <% if local_assigns[:edit] %>
-        <%= render 'ingridients_form', ingridients_field: ingridients_field, edit: true %>
+        <%= render 'ingridients/form', ingridients_field: ingridients_field, edit: true %>
       <% else %>
-        <%= render 'ingridients_form', ingridients_field: ingridients_field %>
+        <%= render 'ingridients/form', ingridients_field: ingridients_field %>
       <% end %>
     </ul>
   <% end %>

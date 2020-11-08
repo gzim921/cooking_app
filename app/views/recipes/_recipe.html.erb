@@ -13,7 +13,13 @@
           <h5>Instructions: </h5>
           <div class="recipe__fields">
             <% recipe.instructions.sort_by(&:order).each do |ins| %>
-              <p><%= "#{ins.order}. #{ins.instruction_info}" %></p>
+              <p>
+                <%= "#{ins.order}. #{ins.instruction_info}" %>
+                <span class="items_in_parag">
+                  <%= link_to 'Edit', edit_recipe_instruction_path(recipe, ins) %>
+                  <%= link_to 'Delete', recipe_instruction_path(recipe, ins), method: :delete, data: { confirm: 'Are u sure?' } %>
+                </span>
+              </p>
             <% end %>
           </div>
           <br>
@@ -39,6 +45,7 @@
       <% if local_assigns[:show] %>
         <%= link_to 'Go back', recipes_path, class: 'card-footer-item' %>
         <%= link_to 'Add Ingridient', new_recipe_ingridient_path(recipe), class: 'card-footer-item' %>
+        <%= link_to 'Add Instruction', new_recipe_instruction_path(recipe), class: 'card-footer-item' %>
       <% else %>
         <%= link_to 'Show', recipe_path(recipe), class: 'card-footer-item' %>
       <% end %>

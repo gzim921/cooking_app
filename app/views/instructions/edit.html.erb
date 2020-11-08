@@ -1,0 +1,12 @@
+<div class="columns is-multilines">
+  <div class="column is-6 is-offset-3">
+    <label class="label">Instructions</label>
+    <%= form_with model: [@recipe, @instruction], local: true do |instructions_field| %>
+      <ul class="instructions_field">
+        <%= render 'form', instructions_field: instructions_field %>
+      </ul>
+      <br>
+      <%= instructions_field.submit 'Update ingridient', class: 'button is-dark' %>
+    <% end %>
+  </div>
+</div> 
