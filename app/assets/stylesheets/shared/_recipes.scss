@@ -30,3 +30,9 @@
     cursor: pointer;
   }
 }
+
+.recipe__fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

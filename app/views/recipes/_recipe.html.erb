@@ -8,17 +8,34 @@
     <div class="card-content">
       <div class="content">
         <u>
-          <h5>Description: </h5>
-          <%= recipe.description %>
+          <div><strong>Description: </strong><%= recipe.description %></div>
+          <br>
+          <h5>Instructions: </h5>
+          <div class="recipe__fields">
+            <% recipe.instructions.sort_by(&:order).each do |ins| %>
+              <p><%= "#{ins.order}. #{ins.instruction_info}" %></p>
+            <% end %>
+          </div>
+          <br>
+          <h5>Igridients: </h5>
+          <div class="recipe__fields">
+            <% recipe.ingridients.each do |ing| %>
+              <p><%= ing.name %></p>
+            <% end %>
+          </div>
         </u>
         <br>
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+        <br>
+        <time datetime="2016-1-1"><%= recipe.created_at.strftime("%B %d %Y, %l:%M%P") %></time>
       </div>
     </div>
     <footer class="card-footer">
-      <a href="#" class="card-footer-item">Save</a>
+      <% if local_assigns[:show] %>
+        <%= link_to 'Go back', recipes_path, class: 'card-footer-item' %>
+      <% else %>
+        <%= link_to 'Show', recipe_path(recipe), class: 'card-footer-item' %>
+      <% end %>
       <a href="#" class="card-footer-item">Edit</a>
-      <a href="#" class="card-footer-item">Delete</a>
     </footer>
   </div>
 </div>
