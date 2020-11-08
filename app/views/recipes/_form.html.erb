@@ -16,7 +16,7 @@
   <label class="label">Instructions</label>
   <ul class="instructions_list">
     <%= form.fields_for :Instructions do |instructions_field| %>
-      <%= render 'instruction_form', instructions_field: instructions_field %>
+      <%= render 'instructions_form', instructions_field: instructions_field %>
     <% end %>
   </ul>
   <div class="field">
@@ -31,7 +31,7 @@
   <label class="label">Ingridients</label>
   <ul class="ingridients_list">
     <%=form.fields_for :ingridients do |ingridients_field| %>
-      <%= render 'ingridients_form', instructions_field: ingridients_field %>
+      <%= render 'ingridients_form', ingridients_field: ingridients_field %>
     <% end %>
   </ul>
   <div class="field">
@@ -44,7 +44,7 @@
   </div>
   <div class="field is-grouped">
     <div class="control">
-      <%= form.submit 'Submit', class: 'button is-dark' %>
+      <%= form.submit 'Create Recipe', class: 'button is-dark' %>
     </div>
     <div class="control">
       <%= link_to 'Cancel', recipes_path, class: 'button is-light' %>
