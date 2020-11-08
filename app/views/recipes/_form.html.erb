@@ -1,31 +1,53 @@
 <%= form_with model: @recipe, local: true  do |form| %>
   <div class="field">
-      <%= form.label :title, class: 'label' %>
-      <div class="control">
-          <%= form.text_field :title, class: "input", placeholder: "Title" %>
-      </div>
+    <%= form.label :title, class: 'label' %>
+    <div class="control">
+      <%= form.text_field :title, class: "input", placeholder: "Title" %>
+    </div>
   </div>
 
   <div class="field">
-      <%= form.label:description, class: 'label' %>
-      <div class="control">
-          <%= form.text_area :description, class: "input", placeholder: "Description..." %>
-      </div>
+    <%= form.label:description, class: 'label' %>
+    <div class="control">
+      <%= form.text_area :description, class: "input", placeholder: "Description..." %>
+    </div>
   </div>
 
   <label class="label">Instructions</label>
-  <%= render 'instruction_form', form: form %>
-
+  <ul class="instructions_list">
+    <%= form.fields_for :Instructions do |instructions_field| %>
+      <%= render 'instruction_form', instructions_field: instructions_field %>
+    <% end %>
+  </ul>
+  <div class="field">
+    <div class="control has-icons-left has-icons-right" style="margin-top:5%;">
+      <div class="input" id="addInstruction">Add</div>
+      <span class="icon is-small is-left">
+        <i class="fa fa-plus"></i>
+      </span>
+    </div>
+  </div>
 
   <label class="label">Ingridients</label>
-  <%= render 'ingridients_form', form: form %>
-
+  <ul class="ingridients_list">
+    <%=form.fields_for :ingridients do |ingridients_field| %>
+      <%= render 'ingridients_form', instructions_field: ingridients_field %>
+    <% end %>
+  </ul>
+  <div class="field">
+    <div class="control has-icons-left has-icons-right" style="margin-top:5%;">
+      <div class="input" id="addIngridients">Add</div>
+      <span class="icon is-small is-left">
+        <i class="fa fa-plus"></i>
+      </span>
+    </div>
+  </div>
   <div class="field is-grouped">
-      <div class="control">
-          <%= form.submit 'Submit', class: 'button is-dark' %>
-      </div>
-      <div class="control">
-          <%= link_to 'Cancel', recipes_path, class: 'button is-light' %>
-      </div>
+    <div class="control">
+      <%= form.submit 'Submit', class: 'button is-dark' %>
+    </div>
+    <div class="control">
+      <%= link_to 'Cancel', recipes_path, class: 'button is-light' %>
+    </div>
   </div>
 <% end %> 
