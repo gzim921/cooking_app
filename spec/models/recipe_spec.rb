@@ -35,6 +35,20 @@ RSpec.describe Recipe do
     end
 
     context 'dependecies' do
+      context 'when creating with blank nested fields' do
+        it 'should prevent empty instruction records' do
+          re = { title: 'Cake', description: 'Test', "instructions_attributes":
+            { '0' => { order: nil, isntruction_info: nil } } }
+          recipe = Recipe.create(re)
+          expect(recipe.instructions.count).to eq(0)
+        end
+        it 'should prevent empty ingridient records' do
+          re = { title: 'Cake', description: 'Test', "ingridients_attributes":
+            { '0' => { name: nil } } }
+          recipe = Recipe.create(re)
+          expect(recipe.ingridients.count).to eq(0)
+        end
+      end
       context 'when destroying recipe' do
         let(:recipe) { create(:recipe) }
         it 'should destroy all instructions' do
