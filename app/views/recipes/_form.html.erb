@@ -36,9 +36,9 @@
   <%=form.fields_for :ingridients do |ingridients_field| %>
     <ul class="ingridients_list">
       <% if local_assigns[:edit] %>
-        <%= render 'ingridients/form', ingridients_field: ingridients_field, edit: true %>
+        <%= render 'ingridients_form', ingridients_field: ingridients_field, edit: true %>
       <% else %>
-        <%= render 'ingridients/form', ingridients_field: ingridients_field %>
+        <%= render 'ingridients_form', ingridients_field: ingridients_field %>
       <% end %>
     </ul>
   <% end %>

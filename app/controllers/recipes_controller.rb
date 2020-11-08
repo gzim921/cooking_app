@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :find_recipe, expect: [:index, :new, :create]
+  before_action :find_recipe, except: [:index, :new, :create]
 
   def index
     @recipes = Recipe.all
