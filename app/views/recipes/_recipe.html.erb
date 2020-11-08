@@ -36,6 +36,7 @@
         <%= link_to 'Show', recipe_path(recipe), class: 'card-footer-item' %>
       <% end %>
        <%= link_to 'Edit', edit_recipe_path(recipe), class: 'card-footer-item' %>
+       <%= link_to 'Delete', recipe_path(recipe), class: 'card-footer-item', method: :delete, data: { confirm: 'Are u sure?' } %>
     </footer>
   </div>
 </div>
