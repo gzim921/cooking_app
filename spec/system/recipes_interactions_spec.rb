@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'RecipesInteractions' do
+  let(:recipe) { create(:recipe) }
+
   before do
     driven_by(:rack_test)
 
@@ -57,12 +59,9 @@ RSpec.describe 'RecipesInteractions' do
         within('form') do
           fill_in 'Title', with: title
           fill_in 'Description', with: description
-          fill_in 'recipe_instructions_attributes_0_order',
-                  with: 1
-          fill_in 'recipe_instructions_attributes_0_instruction_info',
-                  with: instruction_info
-          fill_in 'recipe_ingridients_attributes_0_name',
-                  with: ing_name
+          fill_in 'recipe_instructions_attributes_0_order', with: 1
+          fill_in 'recipe_instructions_attributes_0_instruction_info', with: instruction_info
+          fill_in 'recipe_ingridients_attributes_0_name', with: ing_name
 
           click_on 'Create Recipe'
         end
@@ -71,6 +70,52 @@ RSpec.describe 'RecipesInteractions' do
         expect(page).to have_content(instruction_info)
         expect(page).to have_content(ing_name)
       end
+    end
+  end
+
+  describe 'Editing a recipe' do
+    before do
+      visit recipe_path(recipe)
+
+      click_on 'Edit'
+    end
+
+    context 'when clicking button Update' do
+      it 'should update recipe and show the recipe' do
+        title = 'Test for update'
+        description = 'Test desc'
+
+        within('form') do
+          fill_in 'Title', with: title
+          fill_in 'Description', with: description
+
+          click_on 'Update Recipe'
+        end
+
+        expect(page).to have_content(title)
+        expect(page).to have_content(description)
+      end
+    end
+
+    context 'when clicking button cancel' do
+      it 'should go back to root path' do
+        click_on 'Cancel'
+
+        expect(page).to have_content(recipe.title)
+        expect(page).to have_content('Show')
+        expect(page).to have_content('Edit')
+      end
+    end
+  end
+
+  describe 'Deleting a recipe' do
+    it 'should delete recipe and redirect to root path' do
+      visit recipe_path(recipe)
+
+      click_on 'Delete'
+
+      expect(page).not_to have_content(recipe.title)
+      expect(page).not_to have_content('Show')
     end
   end
 end
