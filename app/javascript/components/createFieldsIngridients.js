@@ -1,7 +1,8 @@
 $(document).on('turbolinks:load', function() {
-  const createInstruction = $('#addIngridients');
+  const createIngridient = $('#addIngridient');
 
-  createInstruction.click(function(){
+  createIngridient.click(function(){
+    console.log('nali')
     var date = new Date();
     var mSec = date.getTime();
 

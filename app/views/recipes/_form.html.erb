@@ -33,18 +33,18 @@
   </div>
 
   <label class="label">Ingridients</label>
-  <%=form.fields_for :ingridients do |ingridients_field| %>
-    <ul class="ingridients_list">
+  <ul class="ingridients_list">
+    <%=form.fields_for :ingridients do |ingridients_field| %>
       <% if local_assigns[:edit] %>
         <%= render 'ingridients/form', ingridients_field: ingridients_field, edit: true %>
       <% else %>
         <%= render 'ingridients/form', ingridients_field: ingridients_field %>
       <% end %>
-    </ul>
-  <% end %>
+    <% end %>
+  </ul>
   <div class="field">
     <div class="control has-icons-left has-icons-right" style="margin-top:5%;">
-      <div class="input" id="addIngridients">Add</div>
+      <div class="input" id="addIngridient">Add</div>
       <span class="icon is-small is-left">
         <i class="fa fa-plus"></i>
       </span>
