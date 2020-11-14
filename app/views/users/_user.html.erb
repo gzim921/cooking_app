@@ -1,0 +1,25 @@
+<div class="box">
+  <article class="media">
+    <figure class="media-left">
+      <p class="image is-128x128">
+        <img src="https://bulma.io/images/placeholders/128x128.png">
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <h4><strong><%= " #{ user.first_name } #{ user.last_name } " %></strong></h4>
+          <%= user.email %>
+          <%= link_to 'Edit profile', edit_user_path(user), style:'position:relative; float:right' %>
+          <br>
+          <hr>
+          <!--
+            <code> 
+                # <%= "All Tweets #{user}" %> · <%= "All Retweets #{user}" %> · 
+            </code>
+          -->
+        </p>
+      </div>
+    </div>
+  </article>
+</div> 
