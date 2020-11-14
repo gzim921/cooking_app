@@ -15,10 +15,12 @@
             <% recipe.instructions.sort_by(&:order).each do |ins| %>
               <p>
                 <%= "#{ins.order}. #{ins.instruction_info}" %>
-                <span class="items_in_parag">
-                  <%= link_to 'Edit', edit_recipe_instruction_path(recipe, ins) %>
-                  <%= link_to 'Delete', recipe_instruction_path(recipe, ins), method: :delete, data: { confirm: 'Are u sure?' } %>
-                </span>
+                <% if logged_in? %>
+                  <span class="items_in_parag">
+                    <%= link_to 'Edit', edit_recipe_instruction_path(recipe, ins) %>
+                    <%= link_to 'Delete', recipe_instruction_path(recipe, ins), method: :delete, data: { confirm: 'Are u sure?' } %>
+                  </span>
+                <% end %>
               </p>
             <% end %>
           </div>

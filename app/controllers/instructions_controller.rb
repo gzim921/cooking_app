@@ -2,37 +2,61 @@ class InstructionsController < ApplicationController
   before_action :find_instruction, only: [:edit, :update, :destroy]
 
   def new
-    @recipe = Recipe.find(params[:recipe_id])
-    @instruction = @recipe.instructions.build
+    if logged_in?
+      @recipe = Recipe.find(params[:recipe_id])
+      @instruction = @recipe.instructions.build
+    else
+      flash[:danger] = 'You have to login!'
+      redirect_to root_path
+    end
   end
 
   def create
-    @recipe = Recipe.find(params[:recipe_id])
-    @instruction = @recipe.instructions.create(instruction_params)
+    if logged_in?
+      @recipe = Recipe.find(params[:recipe_id])
+      @instruction = @recipe.instructions.create(instruction_params)
 
-    if @instruction.save
-      redirect_to @recipe
+      if @instruction.save
+        redirect_to @recipe
+      else
+        render :new
+      end
     else
-      render :new
+      flash[:danger] = 'You have to login!'
+      redirect_to root_path
     end
   end
 
   def edit
+    unless logged_in?
+      flash[:danger] = 'You have to login!'
+      redirect_to root_path
+    end
   end
 
   def update
-    if @instruction.update(instruction_params)
-      redirect_to @recipe
+    if logged_in?
+      if @instruction.update(instruction_params)
+        redirect_to @recipe
+      else
+        render :edit
+      end
     else
-      render :edit
+      lash[:danger] = 'You have to login!'
+      redirect_to root_path
     end
   end
 
   def destroy
-    if @instruction.destroy
-      redirect_to @recipe
+    if logged_in?
+      if @instruction.destroy
+        redirect_to @recipe
+      else
+        render @recipe
+      end
     else
-      render @recipe
+      flash[:danger] = 'You have to login!'
+      redirect_to root_path
     end
   end
 
