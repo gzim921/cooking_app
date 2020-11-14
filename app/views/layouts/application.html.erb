@@ -21,6 +21,11 @@
 
       <div class="hero-body">
         <div class="container is-fullhd">
+          <div class="columns is-multiline">  
+            <div class="column is-6 is-offset-3">
+              <%= render 'shared/flash' %>
+            </div>
+          </div>
           <%= yield %>
         </div>
       </div>

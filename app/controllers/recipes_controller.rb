@@ -9,38 +9,62 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
-    @recipe.instructions.build
-    @recipe.ingridients.build
+    if logged_in?
+      @recipe = Recipe.new
+      @recipe.instructions.build
+      @recipe.ingridients.build
+    else
+      flash[:danger] = 'You have to login'
+      redirect_to login_path
+    end
   end
 
   def create
-    @recipe = Recipe.create(recipe_params)
-    @recipe.user = current_user
+    if logged_in?
+      @recipe = Recipe.create(recipe_params)
+      @recipe.user = current_user
 
-    if @recipe.save
-      redirect_to root_path
+      if @recipe.save
+        redirect_to root_path
+      else
+        render :new
+      end
     else
-      render :new
+      flash[:danger] = 'You have to login!'
+      redirect_to login_path
     end
   end
 
   def edit
+    unless logged_in?
+      flash[:danger] = 'You have to login!'
+      redirect_to login_path
+    end
   end
 
   def update
-    if @recipe.update(recipe_params)
-      redirect_to @recipe
+    if logged_in?
+      if @recipe.update(recipe_params)
+        redirect_to @recipe
+      else
+        render :edit
+      end
     else
-      render :edit
+      flash[:danger] = 'You have to login!'
+      redirect_to login_path
     end
   end
 
   def destroy
-    if @recipe.destroy
-      redirect_to root_path
+    if logged_in?
+      if @recipe.destroy
+        redirect_to root_path
+      else
+        render @recipe
+      end
     else
-      render @recipe
+      flash[:danger] = 'You have to login!'
+      redirect_to root_path
     end
   end
 
