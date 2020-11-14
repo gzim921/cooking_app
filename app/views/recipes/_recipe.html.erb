@@ -27,11 +27,13 @@
           <div class="recipe__fields">
             <% recipe.ingridients.each do |ing| %>
               <p>
-                <%= ing.name %> 
-                <span class="items_in_parag">
-                  <%= link_to 'Edit', edit_recipe_ingridient_path(recipe, ing) %>
-                  <%= link_to 'Delete', recipe_ingridient_path(recipe, ing), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </span>
+                <%= ing.name %>
+                <% if logged_in? %>
+                  <span class="items_in_parag">
+                    <%= link_to 'Edit', edit_recipe_ingridient_path(recipe, ing) %>
+                    <%= link_to 'Delete', recipe_ingridient_path(recipe, ing), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </span>
+                <% end %>
               </p>
             <% end %>
           </div>
@@ -44,13 +46,17 @@
     <footer class="card-footer">
       <% if local_assigns[:show] %>
         <%= link_to 'Go back', recipes_path, class: 'card-footer-item' %>
-        <%= link_to 'Add Ingridient', new_recipe_ingridient_path(recipe), class: 'card-footer-item' %>
-        <%= link_to 'Add Instruction', new_recipe_instruction_path(recipe), class: 'card-footer-item' %>
+        <% if logged_in? %>
+          <%= link_to 'Add Ingridient', new_recipe_ingridient_path(recipe), class: 'card-footer-item' %>
+          <%= link_to 'Add Instruction', new_recipe_instruction_path(recipe), class: 'card-footer-item' %>
+        <% end %>
       <% else %>
         <%= link_to 'Show', recipe_path(recipe), class: 'card-footer-item' %>
       <% end %>
-       <%= link_to 'Edit', edit_recipe_path(recipe), class: 'card-footer-item' %>
-       <%= link_to 'Delete', recipe_path(recipe), class: 'card-footer-item', method: :delete, data: { confirm: 'Are u sure?' } %>
+      <% if logged_in? %>
+        <%= link_to 'Edit', edit_recipe_path(recipe), class: 'card-footer-item' %>
+        <%= link_to 'Delete', recipe_path(recipe), class: 'card-footer-item', method: :delete, data: { confirm: 'Are u sure?' } %>
+      <% end %>
     </footer>
   </div>
 </div>
