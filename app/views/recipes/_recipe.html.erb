@@ -3,6 +3,7 @@
     <header class="card-header-tittle">
       <p class="card-header-title">
         <%= recipe.user.first_name %> - <%= recipe.title %>
+        <%= link_to '-> Visit user', user_path(recipe.user), class: 'visit__user' %>
       </p>
     </header>
     <div class="card-content">
