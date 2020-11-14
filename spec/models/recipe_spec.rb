@@ -25,6 +25,7 @@ RSpec.describe Recipe do
     context 'relations' do
       it { should have_many(:instructions).dependent(:destroy) }
       it { should have_many(:ingridients).dependent(:destroy) }
+      it { should belong_to(:user) }
 
       it do
         should accept_nested_attributes_for(:instructions)
