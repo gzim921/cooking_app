@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
 
     if @user.save
-      # redirect to User profile
-      redirect_to root_path
+      log_in(@user)
+      redirect_to @user
     else
       render :new
     end

@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
                .try(:authenticate, params[:session][:password])
 
     if user
-      session[:user_id] = user.id
+      log_in(user)
       redirect_to user_path(user)
     else
       render :new
