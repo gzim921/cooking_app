@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'IngridientsInteractions' do
-  let(:recipe) { create(:recipe) }
+  let(:user) { create(:user) }
+  let(:recipe) { create(:recipe, user: user) }
   let!(:ingridient) { create(:ingridient, recipe: recipe) }
 
   before do
     driven_by(:rack_test)
 
-    log_in(create(:user))
+    log_in(user)
 
     visit recipe_path(recipe)
   end
