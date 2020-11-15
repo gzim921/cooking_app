@@ -6,6 +6,8 @@ RSpec.describe 'RecipesInteractions' do
   before do
     driven_by(:rack_test)
 
+    log_in(create(:user))
+
     visit root_path
   end
 

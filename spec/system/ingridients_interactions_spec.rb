@@ -7,6 +7,8 @@ RSpec.describe 'IngridientsInteractions' do
   before do
     driven_by(:rack_test)
 
+    log_in(create(:user))
+
     visit recipe_path(recipe)
   end
 
