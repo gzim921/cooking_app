@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       log_in(user)
       redirect_to user_path(user)
     else
+      flash.now[:danger] = "Email and password doesn't match"
       render :new
     end
   end

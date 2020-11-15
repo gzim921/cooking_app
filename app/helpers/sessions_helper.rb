@@ -17,4 +17,8 @@ module SessionsHelper
     session.clear
     @current_user = nil
   end
+
+  def user_equals?(user)
+    current_user == user
+  end
 end

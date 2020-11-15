@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       log_in(@user)
       redirect_to @user
     else
+      flash.now[:danger] = @user.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -19,16 +20,35 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    if logged_in?
+      @user = User.find(params[:id])
+      unless user_equals?(@user)
+        flash[:danger] = 'You dont have permission!'
+        redirect_to root_path
+      end
+    else
+      flash[:danger] = 'You have to login!'
+      redirect_to login_path
+    end
   end
 
   def update
-    @user = User.find(params[:id])
+    if logged_in?
+      @user = User.find(params[:id])
 
-    if @user.update(user_params)
-      redirect_to @user
+      unless user_equals?(@user)
+        flash[:danger] = 'You dont have permission!'
+        redirect_to root_path and return
+      end
+
+      if @user.update(user_params)
+        redirect_to @user
+      else
+        render :edit
+      end
     else
-      render :edit
+      flash[:danger] = 'You have to login!'
+      redirect_to login_path
     end
   end
 

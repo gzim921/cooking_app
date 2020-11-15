@@ -23,6 +23,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 # font awesome for icons
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
+
+gem 'rails-controller-testing'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
