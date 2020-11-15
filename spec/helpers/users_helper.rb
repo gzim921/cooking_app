@@ -9,4 +9,17 @@ module UsersHelper
       click_on 'Login'
     end
   end
+
+  def log_in_request(user)
+    post_params = {
+      params: {
+        session: {
+          email: user.email,
+          password: user.password
+        }
+      }
+    }
+
+    post login_path, post_params
+  end
 end

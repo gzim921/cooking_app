@@ -18,7 +18,7 @@ module SessionsHelper
     @current_user = nil
   end
 
-  def user_equals?(user)
-    current_user == user
+  def user_equals?(other_user)
+    current_user == other_user
   end
 end

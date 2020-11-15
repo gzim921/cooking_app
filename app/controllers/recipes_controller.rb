@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
+  before_action :require_login, except: [:show]
   before_action :find_recipe, except: [:index, :new, :create]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @recipes = Recipe.all
@@ -43,28 +45,18 @@ class RecipesController < ApplicationController
   end
 
   def update
-    if logged_in?
-      if @recipe.update(recipe_params)
-        redirect_to @recipe
-      else
-        render :edit
-      end
+    if @recipe.update(recipe_params)
+      redirect_to @recipe
     else
-      flash[:danger] = 'You have to login!'
-      redirect_to login_path
+      render :edit
     end
   end
 
   def destroy
-    if logged_in?
-      if @recipe.destroy
-        redirect_to root_path
-      else
-        render @recipe
-      end
-    else
-      flash[:danger] = 'You have to login!'
+    if @recipe.destroy
       redirect_to root_path
+    else
+      render @recipe
     end
   end
 
@@ -76,5 +68,19 @@ class RecipesController < ApplicationController
 
   def find_recipe
     @recipe = Recipe.find(params[:id])
+  end
+
+  def correct_user
+    unless user_equals?(@recipe.user)
+      flash[:danger] = 'You dont have permission!'
+      redirect_to root_path and return
+    end
+  end
+
+  def require_login
+    unless logged_in?
+      flash[:danger] = 'You have to login!'
+      redirect_to login_path
+    end
   end
 end
