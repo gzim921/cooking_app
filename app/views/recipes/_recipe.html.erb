@@ -13,7 +13,7 @@
           <br>
           <h5>Instructions: </h5>
           <div class="recipe__fields">
-            <% recipe.instructions.sort_by(&:order).each do |ins| %>
+            <% recipe.instructions.sort_by.each do |ins| %>
               <p>
                 <%= "#{ins.order}. #{ins.instruction_info}" %>
                 <% if logged_in? && user_equals?(recipe.user) %>
