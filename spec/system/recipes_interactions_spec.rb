@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'RecipesInteractions' do
-  let(:recipe) { create(:recipe) }
+  let(:user) { create(:user) }
+  let!(:recipe) { create(:recipe, user: user) }
 
   before do
     driven_by(:rack_test)
 
-    log_in(create(:user))
+    log_in(user)
 
     visit root_path
   end

@@ -11,29 +11,19 @@ class RecipesController < ApplicationController
   end
 
   def new
-    if logged_in?
-      @recipe = Recipe.new
-      @recipe.instructions.build
-      @recipe.ingridients.build
-    else
-      flash[:danger] = 'You have to login'
-      redirect_to login_path
-    end
+    @recipe = Recipe.new
+    @recipe.instructions.build
+    @recipe.ingridients.build
   end
 
   def create
-    if logged_in?
-      @recipe = Recipe.create(recipe_params)
-      @recipe.user = current_user
+    @recipe = Recipe.create(recipe_params)
+    @recipe.user = current_user
 
-      if @recipe.save
-        redirect_to root_path
-      else
-        render :new
-      end
+    if @recipe.save
+      redirect_to root_path
     else
-      flash[:danger] = 'You have to login!'
-      redirect_to login_path
+      render :new
     end
   end
 
