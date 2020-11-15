@@ -21,4 +21,8 @@ module SessionsHelper
   def user_equals?(other_user)
     current_user == other_user
   end
+
+  def user_full_name(user)
+    "#{user.first_name} #{user.last_name}"
+  end
 end

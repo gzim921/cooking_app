@@ -8,14 +8,14 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <h4><strong><%= " #{ user.first_name } #{ user.last_name } " %></strong></h4>
+          <h4><strong><%= user_full_name(user) %></strong></h4>
           <%= user.email %>
           <%= link_to 'Edit profile', edit_user_path(user), style:'position:relative; float:right' %>
           <br>
           <hr>
-            <code> 
-              . <%= "All Recipes #{user.recipes.count}" %>
-            </code>
+          <code> 
+            . <%= "All Recipes #{user.recipes.count}" %>
+          </code>
         </p>
       </div>
     </div>
