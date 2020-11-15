@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:eidt, :update]
+  skip_before_action :require_login, except: [:edit, :update]
   before_action :find_user, except: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
 
@@ -48,13 +48,6 @@ class UsersController < ApplicationController
     unless user_equals?(@user)
       flash[:danger] = 'You dont have permission!'
       redirect_to root_path and return
-    end
-  end
-
-  def require_login
-    unless logged_in?
-      flash[:danger] = 'You have to login!'
-      redirect_to login_path
     end
   end
 end

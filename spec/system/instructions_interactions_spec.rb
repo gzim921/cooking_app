@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "InstructionsInteractions" do
   let(:user) { create(:user) }
-  let(:recipe) { create(:recipe, user: user) }
+  let!(:recipe) { create(:recipe, user: user) }
   let!(:instruction) { create(:instruction, recipe: recipe) }
 
   before do

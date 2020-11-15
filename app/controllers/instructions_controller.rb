@@ -1,21 +1,30 @@
 class InstructionsController < ApplicationController
-  before_action :require_login
   before_action :find_instruction, only: [:edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @recipe = Recipe.find(params[:recipe_id])
-    @instruction = @recipe.instructions.build
+    if user_equals?(@recipe.user)
+      @instruction = @recipe.instructions.build
+    else
+      flash[:danger] = 'You dont have permission!'
+      redirect_to root_path and return
+    end
   end
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
-    @instruction = @recipe.instructions.create(instruction_params)
-    
-    if @instruction.save
-      redirect_to @recipe
+    if user_equals?(@recipe.user)
+      @instruction = @recipe.instructions.create(instruction_params)
+
+      if @instruction.save
+        redirect_to @recipe
+      else
+        render :new
+      end
     else
-      render :new
+      flash[:danger] = 'You dont have permission!'
+      redirect_to root_path and return
     end
   end
 
@@ -53,13 +62,6 @@ class InstructionsController < ApplicationController
     unless user_equals?(@recipe.user)
       flash[:danger] = 'You dont have permission!'
       redirect_to root_path and return
-    end
-  end
-
-  def require_login
-    unless logged_in?
-      flash[:danger] = 'You have to login!'
-      redirect_to root_path
     end
   end
 end

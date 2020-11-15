@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Ingridients' do
   let(:user) { create(:user) }
   let(:recipe) { create(:recipe, user: user) }
-  let(:ingridient)  { create(:ingridient, recipe: recipe) }
+  let(:ingridient) { create(:ingridient, recipe: recipe) }
 
   describe 'As not logged in user' do
     it 'should not allow to create ingridient' do
@@ -17,7 +17,7 @@ RSpec.describe 'Ingridients' do
 
       post recipe_ingridients_path(recipe), post_params
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(login_path)
       follow_redirect!
       expect(response.body).to include('You have to login!')
     end
@@ -33,7 +33,7 @@ RSpec.describe 'Ingridients' do
 
       patch recipe_ingridient_path(recipe, ingridient), patch_params
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(login_path)
       follow_redirect!
       expect(response.body).to include('You have to login!')
     end
@@ -41,7 +41,7 @@ RSpec.describe 'Ingridients' do
     it 'should not allow to delete it' do
       delete recipe_ingridient_path(recipe, ingridient)
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(login_path)
       follow_redirect!
       expect(response.body).to include('You have to login!')
     end

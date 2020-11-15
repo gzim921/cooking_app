@@ -1,21 +1,30 @@
 class IngridientsController < ApplicationController
-  before_action :require_login
   before_action :find_ingridient, only: [:edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @recipe = Recipe.find(params[:recipe_id])
-    @ingridient = @recipe.ingridients.build
+    if user_equals?(@recipe.user)
+      @ingridient = @recipe.ingridients.build
+    else
+      flash[:danger] = 'You dont have permission!'
+      redirect_to root_path and return
+    end
   end
 
   def create
     recipe = Recipe.find(params[:recipe_id])
-    ingridient = recipe.ingridients.create(ingridient_params)
+    if user_equals?(recipe.user)
+      ingridient = recipe.ingridients.create(ingridient_params)
 
-    if ingridient.save
-      redirect_to recipe
+      if ingridient.save
+        redirect_to recipe
+      else
+        render :new
+      end
     else
-      render :new
+      flash[:danger] = 'You dont have permission!'
+      redirect_to root_path and return
     end
   end
 
@@ -53,13 +62,6 @@ class IngridientsController < ApplicationController
     unless user_equals?(@recipe.user)
       flash[:danger] = 'You dont have permission!'
       redirect_to root_path and return
-    end
-  end
-
-  def require_login
-    unless logged_in?
-      flash[:danger] = 'You have to login!'
-      redirect_to root_path
     end
   end
 end

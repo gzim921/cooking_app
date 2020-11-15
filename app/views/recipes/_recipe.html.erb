@@ -16,7 +16,7 @@
             <% recipe.instructions.sort_by(&:order).each do |ins| %>
               <p>
                 <%= "#{ins.order}. #{ins.instruction_info}" %>
-                <% if logged_in? %>
+                <% if logged_in? && user_equals?(recipe.user) %>
                   <span class="items_in_parag">
                     <%= link_to 'Edit', edit_recipe_instruction_path(recipe, ins) %>
                     <%= link_to 'Delete', recipe_instruction_path(recipe, ins), method: :delete, data: { confirm: 'Are u sure?' } %>
@@ -49,14 +49,14 @@
     <footer class="card-footer">
       <% if local_assigns[:show] %>
         <%= link_to 'Go back', recipes_path, class: 'card-footer-item' %>
-        <% if logged_in? %>
+        <% if logged_in? && user_equals?(recipe.user) %>
           <%= link_to 'Add Ingridient', new_recipe_ingridient_path(recipe), class: 'card-footer-item' %>
           <%= link_to 'Add Instruction', new_recipe_instruction_path(recipe), class: 'card-footer-item' %>
         <% end %>
       <% else %>
         <%= link_to 'Show', recipe_path(recipe), class: 'card-footer-item' %>
       <% end %>
-      <% if logged_in? %>
+      <% if logged_in? && user_equals?(recipe.user) %>
         <%= link_to 'Edit', edit_recipe_path(recipe), class: 'card-footer-item' %>
         <%= link_to 'Delete', recipe_path(recipe), class: 'card-footer-item', method: :delete, data: { confirm: 'Are u sure?' } %>
       <% end %>

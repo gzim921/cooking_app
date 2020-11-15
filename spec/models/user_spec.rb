@@ -31,7 +31,7 @@ RSpec.describe User do
 
     context 'trying to create user with same email' do
       subject { create(:user) }
-      it { is_expected.to validate_uniqueness_of(:email).with_message("already exists.") }
+      it { is_expected.to validate_uniqueness_of(:email).with_message('already exists.') }
     end
   end
 

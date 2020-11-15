@@ -18,7 +18,7 @@ RSpec.describe 'Instructions' do
 
       post recipe_instructions_path(recipe), post_params
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(login_path)
       follow_redirect!
       expect(response.body).to include('You have to login!')
     end
@@ -35,7 +35,7 @@ RSpec.describe 'Instructions' do
 
       patch recipe_instruction_path(recipe, instruction), patch_params
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(login_path)
       follow_redirect!
       expect(response.body).to include('You have to login!')
     end
@@ -43,7 +43,7 @@ RSpec.describe 'Instructions' do
     it 'should not allow to delete it' do
       delete recipe_instruction_path(recipe, instruction)
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(login_path)
       follow_redirect!
       expect(response.body).to include('You have to login!')
     end
