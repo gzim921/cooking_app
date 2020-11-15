@@ -11,7 +11,7 @@ RSpec.describe "RecipeRequests" do
           }
         }
       }
-      post recipes_path, post_params 
+      post recipes_path, post_params
 
       follow_redirect!
       expect(response.body).to include('You have to login!')
@@ -111,4 +111,4 @@ RSpec.describe "RecipeRequests" do
       end
     end
   end
-end 
+end
