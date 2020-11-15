@@ -50,6 +50,9 @@ Before running the server i recommend you tu run:
 
 After that you can start by typing in terminal: `rails server` -> to run the server ( check 'localhost:3000/routes')
 
+- You might need to run `yarn install --check-files` if Yarn packages are out of date!
+
+
 ### Running tests
 
 For testing i have user RSpec framework version `4.0.1`
