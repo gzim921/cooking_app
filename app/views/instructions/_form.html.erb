@@ -9,7 +9,7 @@
           <%= instructions_field.text_field :instruction_info, class: 'input', placeholder: 'Instruction...' %>
         </div>
         <div class="column is-1">
-          <div class="icon_times"> 
+          <div class="icon_times">  
             <% if local_assigns[:edit] %>
               <%= instructions_field.check_box :_destroy %>
             <% else %>
@@ -20,4 +20,4 @@
       </div>
     </div>
   </li>
-</div> 
+</div>

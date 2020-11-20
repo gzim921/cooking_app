@@ -2,15 +2,17 @@
   <li>
     <div class="control">
       <div class="columns is-mobile">
-        <div class="col=umn">
+        <div class="column">
           <%= ingridients_field.text_field :name, class: 'input', placeholder: 'Ingridient' %>
         </div>
         <div class="column is-1">
-          <% if local_assigns[:edit] %>
-            <%= ingridients_field.check_box :_destroy %>
-          <% else %>
-            <i class="fa fa-times fa-2x"></i>
-          <% end %>
+          <div class="icon_times">  
+            <% if local_assigns[:edit] %>
+              <%= ingridients_field.check_box :_destroy %>
+            <% else %>
+              <i class="fa fa-times fa-2x"></i>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

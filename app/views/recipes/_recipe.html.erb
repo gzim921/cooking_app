@@ -1,6 +1,6 @@
 <div class="column is-6 is-offset-3">
   <div class="card">
-    <header class="card-header-tittle">
+    <header class="card-header">
       <p class="card-header-title">
         <%= user_full_name(recipe.user) %> - <%= recipe.title %>
         <%= link_to '-> Visit user', user_path(recipe.user), class: 'visit__user' %>
@@ -9,13 +9,13 @@
     <div class="card-content">
       <div class="content">
         <u>
-          <div><strong>Description: </strong><%= recipe.description %></div>
+          <div><strong> Description: </strong><%= recipe.description %></div>
           <br>
           <h5>Instructions: </h5>
           <div class="recipe__fields">
-            <% recipe.instructions.sort_by.each do |ins| %>
+            <% recipe.instructions.sort_by(&:order).each do |ins| %>
               <p>
-                <%= "#{ins.order}. #{ins.instruction_info}" %>
+                <%= "#{ins.order}. #{ins.instruction_info}"  %>
                 <% if logged_in? && user_equals?(recipe.user) %>
                   <span class="items_in_parag">
                     <%= link_to 'Edit', edit_recipe_instruction_path(recipe, ins) %>
@@ -31,7 +31,7 @@
             <% recipe.ingridients.each do |ing| %>
               <p>
                 <%= ing.name %>
-                <% if logged_in? %>
+                <% if logged_in? && user_equals?(recipe.user) %>
                   <span class="items_in_parag">
                     <%= link_to 'Edit', edit_recipe_ingridient_path(recipe, ing) %>
                     <%= link_to 'Delete', recipe_ingridient_path(recipe, ing), method: :delete, data: { confirm: 'Are you sure?' } %>

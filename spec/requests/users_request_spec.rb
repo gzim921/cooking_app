@@ -70,7 +70,7 @@ RSpec.describe 'Users' do
 
     describe 'Passing invalid parameters' do
       context 'when signing in' do
-        it "should pop a flash that Email and password doesn't match " do
+        it 'should pop a flash that Email and password doesnt match ' do
           user = create(:user)
 
           post_params = {
@@ -85,7 +85,7 @@ RSpec.describe 'Users' do
           post '/login', post_params
 
           expect(response).to render_template(:new)
-          expect(response.body).to include("Email and password doesn't match")
+          expect(response.body).to include('Email and password doesnt match')
         end
       end
 
@@ -99,7 +99,7 @@ RSpec.describe 'Users' do
                 email: 'test@gmail.com',
                 password: '',
                 password_confirmation: ''
-              } 
+              }
             }
           }
 
@@ -121,7 +121,7 @@ RSpec.describe 'Users' do
           session: {
             email: user.email,
             password: user.password
-          } 
+          }
         }
       }
 

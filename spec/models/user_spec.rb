@@ -13,7 +13,7 @@ RSpec.describe User do
         should validate_length_of(:password)
           .is_at_least(User::MIN_PASS_LENGTH)
           .is_at_most(User::MAX_PASS_LENGTH)
-          .with_message('must contain at least 6 characters')
+          .with_message('must contain at least 6 charachters')
       end
     end
 

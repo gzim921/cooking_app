@@ -24,6 +24,7 @@ RSpec.describe Instruction do
   describe 'associations' do
     context 'relations' do
       it { should belong_to(:recipe) }
+      it { should have_db_index(:recipe_id) }
     end
   end
 end

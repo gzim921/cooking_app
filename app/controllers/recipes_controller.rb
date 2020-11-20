@@ -28,10 +28,6 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    unless logged_in?
-      flash[:danger] = 'You have to login!'
-      redirect_to login_path
-    end
   end
 
   def update

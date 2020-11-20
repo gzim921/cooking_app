@@ -1,8 +1,7 @@
 $(document).on('turbolinks:load', function() {
   const createInstruction = $('#addInstruction');
-  const removeInstruction = $('.fa-times');
 
-  createInstruction.click(function() {
+  createInstruction.click(function(){
     var date = new Date();
     var mSec = date.getTime();
 

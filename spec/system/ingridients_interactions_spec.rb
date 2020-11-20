@@ -25,11 +25,11 @@ RSpec.describe 'IngridientsInteractions' do
     end
 
     context 'when submitting the form' do
-      it 'should create ingridient and redierct to recipe' do
+      it 'should create ingridient and redirect to recipe' do
         ing_name = 'Milk'
 
         within('form') do
-          fill_in 'ingridient_name',	with: ing_name
+          fill_in 'ingridient_name', with: ing_name
 
           click_on 'Create Ingridient'
         end
@@ -47,9 +47,9 @@ RSpec.describe 'IngridientsInteractions' do
       visit edit_recipe_ingridient_path(recipe, ingridient)
 
       within('form') do
-        fill_in 'ingridient_name',	with: name_updated
+        fill_in 'ingridient_name', with: name_updated
 
-        click_on ' Update Ingridient'
+        click_on 'Update Ingridient'
       end
 
       expect(page).to have_content(name_updated)
